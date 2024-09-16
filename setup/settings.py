@@ -139,14 +139,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Ficheiros acima de 2MB vão p/ a o TemporaryMemory, baixo p/ o InMemory
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2000000
 
-DEFAULT_FROM_EMAIL = str(os.getenv("DEFAULT_FROM_EMAIL"))
-EMAIL_BACKEND = str(os.getenv("EMAIL_BACKEND"))
-EMAIL_HOST_USER = str(os.getenv("EMAIL_HOST_USER"))
-EMAIL_HOST_PASSWORD = str(os.getenv("EMAIL_HOST_PASSWORD"))
-EMAIL_USE_TLS = bool(os.getenv("EMAIL_USE_TLS"))
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
-EMAIL_HOST = str(os.getenv("EMAIL_HOST"))
-
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
