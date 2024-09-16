@@ -8,6 +8,7 @@ from .models import Goal, GoalsCompletions
 class GoalSerializer(serializers.ModelSerializer):
     """goal serializer"""
 
+    completionsCount = serializers.IntegerField(read_only=True)
     desiredWeeklyFrequency = serializers.CharField(required=True, source="desired_weekly_frequency")
 
     class Meta:
@@ -18,6 +19,7 @@ class GoalSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "desiredWeeklyFrequency",
+            "completionsCount",
             "created_at",
         ]
         read_only_fields = [

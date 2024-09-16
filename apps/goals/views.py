@@ -50,8 +50,46 @@ def create_goal_completion(request):
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(["GET"])
 def get_pending_goals(request):
-    Response({"status": "success"})
+    """get pending goals"""
+
+    # Pegar o dia de hoje
+    today = now().date()
+
+    # Calcular o primeiro e o último dia da semana
+    first_day_of_week = today - timedelta(days=today.weekday())
+    last_day_of_week = first_day_of_week + timedelta(days=6)
+
+    # Filtrar as metas criadas até o final da semana
+    goals_created_up_to_week = Goal.objects.filter(created_at__lte=last_day_of_week)
+
+    # Contar as metas completadas durante a semana
+    goal_completion_counts = (
+        GoalsCompletions.objects.filter(created_at__gte=first_day_of_week, created_at__lte=last_day_of_week)
+        .values("goal")
+        .annotate(completionsCount=Count("id"))
+    )
+
+    # Criar um dicionário de completions para fácil acesso
+    completions_dict = {item["goal"]: item["completionsCount"] for item in goal_completion_counts}
+
+    # Adicionar o contador de completions para cada meta
+    pending_goals = []
+    for goal in goals_created_up_to_week:
+        completions_count = completions_dict.get(goal.id, 0)
+        pending_goals.append(
+            {
+                "id": goal.id,
+                "title": goal.title,
+                "desired_weekly_frequency": goal.desired_weekly_frequency,
+                "completionsCount": completions_count,
+            }
+        )
+
+    # Retornar as metas pendentes da semana
+    serializer = GoalSerializer(pending_goals, many=True)
+    return Response({"pending_goals": serializer.data})
 
 
 def get_summary(request):
