@@ -31,7 +31,7 @@ class GoalsCompletions(models.Model):
     """goals completions model"""
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
-    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, null=False, blank=False)
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name="completions", null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
