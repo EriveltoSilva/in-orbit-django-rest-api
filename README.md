@@ -19,6 +19,7 @@
       <a href="#gettingStarted">Getting Started</a>
     </li>
     <li><a href="#howToRun">How To Run</a></li>
+    <li><a href="#documentation_urls">Documentation and Admin URLs</a></li>
     <li><a href="#routes">API Endpoints</a></li>
     <li><a href="#collaborators">Collaborators</a></li>
     <li><a href="#contribute">Contribute</a></li>
@@ -84,7 +85,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-- Open .env file;
+- Open **.env** file;
 - Fill project SECRET_KEY;
 - Choose the right database config uncommenting that and leave others commented;
 
@@ -92,6 +93,13 @@ cp .env.example .env
 ```bash
 python manage.py runserver
 ```
+
+<h2 id="documentation_urls">📍 Important Project URLs </h2>
+
+- **OpenAPI Swagger documentation:** http://127.0.0.1:8000/api/v1/docs/
+- **ReDoc documentation:** http://127.0.0.1:8000/api/v1/redoc/
+- **Django Admin:** http://127.0.0.1:8000/admin/
+
 
 <h2 id="routes">📍 API Endpoints </h2>
 
