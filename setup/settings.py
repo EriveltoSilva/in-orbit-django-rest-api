@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Installed apps
+    "apps.goals.apps.GoalsConfig",
     # Vendor apps
     "drf_yasg",
     "rest_framework",
