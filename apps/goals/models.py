@@ -1,3 +1,5 @@
+"""goals models module"""
+
 import uuid
 
 from django.db import models
